@@ -1,0 +1,37 @@
+################################# TP---WIK-DPS-TP01#################################
+
+install the node module: npm install
+build the js file: npx tsc
+execute the programme: node build/app.js
+
+to change the port and execute the programme: open CMD in the file and do --> set PING_LISTEN_PORT=PORT_WANT && node build/app.js
+by default use the port 3000: set PING_LISTEN_PORT=3000 && node build/app.js
+path:
+    /src:
+        :app.ts
+        description: The program take the number in the environnement variable 'PING_LISTEN_PORT' and listen on it. 
+            If the number is not set, the program listen on port 3000. 
+            If the get is different from /ping, the program make 404 error.
+            If the get is /ping, the program return a JSON with the header of the request
+            To see the Json go on your http://localhost:3000/ping.
+
+        get:
+        '/ping':
+            response:
+            'JSON File'
+            description: successfull response
+            content: the header of the request
+
+        '*':
+        response:
+            '404'
+            description: error response
+            content: error 404
+
+exemple:
+    commande_ligne: set PING_LISTEN_PORT=3000 && node build/app.js
+        onWeb: http://localhost:3000/ping
+        response: JsonFile
+    commande_ligne: set PING_LISTEN_PORT=3000 && node build/app.js
+        onWeb: http://localhost:3000/pi
+        response: not found
